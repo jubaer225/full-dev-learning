@@ -1,0 +1,43 @@
+{%- comment -%} 
+  Product Price Snippet
+   
+  Displays product price with special offer formatting.
+  Include it in templates like: {% include 'product-price' %} 
+{%- endcomment -%}
+
+<div class="product-price">
+  {%- if product.compare_at_price > product.price -%}
+    <span class="original-price">{{ product.compare_at_price | money }}</span>
+    <span class="sale-price">{{ product.price | money }}</span>
+    <span class="discount">Save {{ product.compare_at_price | minus: product.price | money }}</span>
+  {%- else -%}
+    <span class="price">{{ product.price | money }}</span>
+  {%- endif -%}
+</div>
+
+<style>
+  .product-price {
+    margin: 1rem 0;
+  }
+
+  .sale-price {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+
+  .original-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 0.5rem;
+  }
+
+  .discount {
+    background-color: #27ae60;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+  }
+</style>

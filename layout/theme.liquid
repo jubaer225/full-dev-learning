@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page_title }}</title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description }}" />
+  {%- endif -%}
+
+    <!-- Shopify required header content -->
+  {{ content_for_header }}
+
+    <!-- Include CSS -->
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+  </head>
+
+  <body>
+    <!-- Main Content -->
+    <main id="main-content" class="main-content">
+      {{ content_for_layout }}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+    </footer>
+
+    <!-- Include JavaScript -->
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+  </body>
+</html>
